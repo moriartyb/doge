@@ -200,8 +200,14 @@ class Doge(object):
             if proc in wow.KNOWN_PROCESSES:
                 self.real_data.append(proc)
                 break
+        
 
         # Shuffle all the data, lowercase it, and set it.
+        
+        
+             
+
+            
         random.shuffle(self.real_data)
         self.real_data = list(map(str.lower, self.real_data))
 
@@ -273,6 +279,11 @@ class DogeMessage(object):
         self.extra_words = extra_words
 
     def generate(self):
+        if('-f' in sys.argv):
+            path = os.getcwd()
+            sys.path.append(path)
+            files = [f for f in os.listdir(path) if os.path.isfile(f)]
+            self.word = random.choice(files)
         if self.word == 'wow':
             # Standalone wow. Don't apply any prefixes or suffixes.
             msg = self.word
